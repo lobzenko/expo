@@ -34,7 +34,7 @@
         <h4 class="fs-18 text-uppercase mb-0"><?=$data->name?></h4>
         24-25 ноября 2022 г.
         <p class="my-3"><?=$data->description?></p>
-        <a class="arrow" href="/event/<?=$data->id_event?>">Подробнее</a>
+        <a class="arrow" href="<?=$data->getUrl()?>">Подробнее</a>
       </div>
   </div>
   <?php }?>

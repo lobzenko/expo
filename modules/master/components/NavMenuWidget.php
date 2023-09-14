@@ -14,6 +14,21 @@ class NavMenuWidget extends Widget
 		'page'=>[
 			'title'=>'Структура',
 			'icon'=>'bx-sitemap',			
+			'submenu'=>[
+				'page'=>[
+					'title'=>'Страницы',
+				],				
+				'service'=>[
+					'title'=>'Услуги',
+				],
+				'event'=>[
+					'title'=>'События',
+					'icon'=>'bx-flag',
+				],
+				'personal'=>[
+					'title'=>'Сотрудники',
+				],
+			],
 		],
 		'place'=>[
 			'title'=>'Площадки',
@@ -25,14 +40,11 @@ class NavMenuWidget extends Widget
 				'rub'=>[
 					'title'=>'Типы',
 				],
-				'service'=>[
-					'title'=>'Услуги',
-				],
 			],
-		],
-		'event'=>[
-			'title'=>'События',
-			'icon'=>'bx-flag',
+		],		
+		'order'=>[
+			'title'=>'Заявки',
+			'icon'=>'bx-briefcase-alt-2',
 		],
 		'response'=>[
 			'title'=>'Отзывы',
@@ -48,16 +60,10 @@ class NavMenuWidget extends Widget
 			'submenu'=>[
 				'menu'=>[
 					'title'=>'Меню и списки',
-				],
-				'personal'=>[
-					'title'=>'Сотрудники',
-				],
+				],				
 				/*'seo'=>[
 					'title'=>'Seo тексты',
 				],*/
-				'page'=>[
-					'title'=>'Страницы',
-				],
 				'vars'=>[
 					'title'=>'Переменные',
 				],

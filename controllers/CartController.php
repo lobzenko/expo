@@ -9,6 +9,7 @@ use app\models\Place;
 use app\models\Subplace;
 use app\models\search\PlaceSearch;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class CartController extends \app\components\BaseController
 {
@@ -18,20 +19,21 @@ class CartController extends \app\components\BaseController
      * @return string
      */
     public function actionIndex($id=0)
-    {                        
-        $places = Place::find()->all();
+    {   
+        $id_subplace = Yii::$app->session->get('id_subplace');
 
-        $this->setSeo();
+        if (!empty($id_subplace))
+            return $this->redirect('/cart/'.$id_subplace);
 
         return $this->render('index',[
-            'records'=>$places,
-            'id_rub'=>$id,
         ]);
     }    
 
     public function actionView($id)
     {        
         $model = Subplace::findOne($id);
+
+        Yii::$app->session->set('id_subplace',$id);
 
         if (empty($model))
             throw new NotFoundHttpException();
@@ -42,6 +44,8 @@ class CartController extends \app\components\BaseController
 
         if ($order->load(Yii::$app->request->post()) && $order->save())
         {
+            Yii::$app->session->remove('id_subplace',$id);
+            
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
                 'success'=>true

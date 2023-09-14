@@ -7,35 +7,26 @@ use yii\widgets\DetailView;
 /** @var app\models\Event $model */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Events', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'События', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="event-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id_event' => $model->id_event], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id_event' => $model->id_event], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
+<div class="card">
+    <div class="card-body">
     <?= DetailView::widget([
         'model' => $model,
-        'attributes' => [
-            'id_event',
-            'id_media',
+        'attributes' => [                        
             'name',
-            'date_begin',
-            'date_end',
-            'state',
+            [
+                'attribute' => 'date_begin',
+                'format' => ['datetime', 'php:d.m.Y']
+            ],
+            [
+                'attribute' => 'date_end',
+                'format' => ['datetime', 'php:d.m.Y']
+            ],
+            'stateLabel:raw:Статус',
         ],
     ]) ?>
-
+    </div>
 </div>

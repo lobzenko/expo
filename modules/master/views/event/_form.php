@@ -45,6 +45,8 @@ use yii\helpers\ArrayHelper;
         ?>
     </div>
 
+    <?= $form->field($model, 'content')->textarea(['rows' => 16,'class'=>'form-control redactor']) ?>
+
     <?= $form->field($model, 'state')->dropDownList($model->getStates()) ?>        
 
     <?= app\extensions\multifile\MultiFileWidget::widget([

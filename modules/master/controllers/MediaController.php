@@ -35,6 +35,84 @@ class MediaController extends Controller
         ];
     }
 
+    /**
+     * @return false|string
+     * @throws HttpException
+     * @throws Exception
+     * @throws ExitException
+     */
+    public function actionTinymce()
+    {        
+        /*********************************************
+         * Change this line to set the upload folder *
+         *********************************************/
+        $imageFolder = "content/images";
+
+        reset($_FILES);
+        $temp = current($_FILES);
+
+        if (is_uploaded_file($temp['tmp_name'])) {
+            /*if (isset($_SERVER['HTTP_ORIGIN']))
+            {
+              // same-origin requests won't set an origin. If the origin is set, it must be valid.
+              if (in_array($_SERVER['HTTP_ORIGIN'], $accepted_origins)) {
+                header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+              } else {
+                header("HTTP/1.1 403 Origin Denied");
+                Yii::$app->end();
+              }
+            }*/
+
+            /*
+              If your script needs to receive cookies, set images_upload_credentials : true in
+              the configuration and enable the following two headers.
+            */
+            // header('Access-Control-Allow-Credentials: true');
+            // header('P3P: CP="There is no P3P policy."');
+
+            // Sanitize input
+            /*if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
+                header("HTTP/1.1 400 Invalid file name.");
+                Yii::$app->end();
+            }*/
+
+            $extension = strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION));
+            // Verify extension
+            if (!in_array($extension, array("gif", "jpg", "png", 'jpeg'))) {
+                header("HTTP/1.1 400 Invalid extension.");
+                Yii::$app->end();
+            }
+
+            // Accept upload if there was no origin, or if it is an accepted origin
+            $filetowrite = $imageFolder . DIRECTORY_SEPARATOR . Yii::$app->security->generateRandomString() . '.' . $extension;
+
+            //$stream = fopen($temp['tmp_name'], 'r+');
+            /*Yii::$app->publicStorage->writeStream($filetowrite, $stream);*/
+
+            /*fclose($stream);
+
+            $ip = Yii::$app->request->userIP;
+
+            if ($ip != '127.0.0.1')
+                $url = str_replace('http://127.0.0.1:9000', 'https://storage.admkrsk.ru', Yii::$app->publicStorage->getPublicUrl($filetowrite));
+            else
+                $url = Yii::$app->publicStorage->getPublicUrl($filetowrite);
+
+            // Respond to the successful upload with JSON.
+            // Use a location key to specify the path to the saved image resource.
+            // { location : '/your/uploaded/image/file'}*/
+            
+            move_uploaded_file($temp['tmp_name'], $filetowrite);
+
+            return json_encode(array('location' => '/'.$filetowrite));
+
+        } else {
+            // Notify editor that the upload failed
+            throw new HttpException(500, 'Server Error');
+        }
+        return Yii::$app->end();
+    }
+
     public function actionUpload()
     {
         $allowedExtensions = array();

@@ -6,14 +6,16 @@
 ?>
 <div class="bg-brown">
   <div class="container py-5">
-      <p class="pre-header"><?=$sub_title?></p>
-      <h2 class="mb-5"><?=$title?></h2>
+      <p class="pre-header"><?=$sub_title??'Заявка'?></p>
+      <h2 class="mb-5"><?=$title??'ОБРАТНАЯ СВЯЗЬ'?></h2>
       <div class="row">
         <div class="col-lg-8">
             <?php $form = ActiveForm::begin([
                 'action'=>'/site/contact',
                 'id'=>'contact-form',
-                //'fieldsTemplates'=>'{input}{error}'
+                'enableAjaxValidation'=>false,
+                'enableClientValidation'=>false,
+                'enableClientScript' => false,
             ]); ?>
                 <div class="row">
                     <div class="col-md-6 mb-4">
@@ -35,7 +37,7 @@
                 <div class="form-check mb-5">
                   <input class="form-check-input" type="checkbox" value="" required id="flexCheckChecked">
                   <label class="form-check-label" for="flexCheckChecked">
-                    Подтверждаю, что ознакомлен с <a class="fw-bold" href="#">политикой конфиденциальности</a> и даю <a class="fw-bold" href="#">согласие на обработку ваших персональных данных</a>
+                    Подтверждаю, что ознакомлен с <a class="fw-bold" href="/policy">политикой конфиденциальности</a> и даю <a class="fw-bold" href="/person-data">согласие на обработку ваших персональных данных</a>
                   </label>
                 </div>
                 <button class="btn btn-lg btn-white" type="submit">Отправить заявку</button>

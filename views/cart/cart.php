@@ -17,8 +17,11 @@
                         <img src="<?=$model->media->showThumb(['w'=>350])?>">
                       </div>
                       <div class="col-7">
-                          <div class="py-4 ps-0 pe-4 d-flex flex-column justify-content-between fs-18 h-100">
-                              <b><?=$model->name?></b>
+                          <div class="py-4 ps-0 pe-4 d-flex flex-column justify-content-between fs-18 h-100">                              
+                              <div>
+                                <b><?=$model->name?></b>
+                                <p class="text-muted"><?=$model->place->name?></p>
+                              </div>
                               <div class="text-right">
                                   <b><?=$model->price?> / <?=$model->price_type?></b>
                               </div>
@@ -31,6 +34,9 @@
       <div class="col-md-6">
         <?php $form = ActiveForm::begin([
             'id'=>'cart-form',
+            'enableAjaxValidation'=>false,
+            'enableClientValidation'=>false,
+            'enableClientScript' => false,
         ]); ?>
 
         <div class="mb-4">
@@ -44,10 +50,10 @@
         </div>
         <div class="row mb-4">
             <div class="col-6">
-                <?= $form->field($order, 'date')->textInput(['placeholder' => 'Дата','type'=>'date'])->label(false) ?>
+                <?= $form->field($order, 'date')->textInput(['placeholder' => 'Дата','type'=>'date','required'=>'true'])->label(false) ?>
             </div>
             <div class="col-6">
-                <?= $form->field($order, 'time')->textInput(['placeholder' => 'Время','type'=>"time"])->label(false) ?>
+                <?= $form->field($order, 'time')->textInput(['placeholder' => 'Время','type'=>"time",'required'=>'true'])->label(false) ?>
             </div>
         </div>
 

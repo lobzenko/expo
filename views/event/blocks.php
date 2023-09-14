@@ -1,6 +1,6 @@
 <?php 
 
-$this->params['breadcrumbs'][] = ['label' => 'Площадки', 'url' => ['/place']];
+$this->params['breadcrumbs'][] = ['label' => 'Портфолио', 'url' => ['place']];
 $this->params['breadcrumbs'][] = $model->name;
 
 

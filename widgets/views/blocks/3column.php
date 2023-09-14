@@ -10,10 +10,10 @@
       </div>
       <div class="col-md-6  d-flex flex-column justify-content-end">
         <p><?=$description?></p>
-        <img src="<?=$image->media->showThumb(['w'=>540])?>" alt="">
+        <?php if (!empty($image->media)){?><img src="<?=$image->media->showThumb(['w'=>540])?>" alt=""><?php }?>
       </div>
       <div class="col-md-4 my-4 my-md-0">
-        <img class="w-100 h-100 fit-cover" src="<?=$image2->media->showThumb(['w'=>350])?>" alt="">
+        <?php if (!empty($image2->media)){?><img class="w-100 h-100 fit-cover" src="<?=$image2->media->showThumb(['w'=>350])?>" alt=""><?php }?>
       </div>
     </div>
 </div>

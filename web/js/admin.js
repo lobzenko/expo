@@ -101,47 +101,22 @@ function filePicker(callback, value, meta) {
     input.click();
 }
 
- $('.redactor').each(function(){
-  console.log($(this).attr('id'));
-  tinymce.init({selector:'#'+$(this).attr('id'),height:300,plugins:["advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker","searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking","save table contextmenu directionality emoticons template paste textcolor"],toolbar:"insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",style_formats:[{title:"Bold text",inline:"b"},{title:"Red text",inline:"span",styles:{color:"#ff0000"}},{title:"Red header",block:"h1",styles:{color:"#ff0000"}},{title:"Example 1",inline:"span",classes:"example1"},{title:"Example 2",inline:"span",classes:"example2"},{title:"Table styles"},{title:"Table row 1",selector:"tr",classes:"tablerow1"}]});
 
-  /*$(this).redactor({
-    removeClasses: true,
-    removeStyles: true,
-    toolbarFixed: true,
-    //linebreaks: true,
-    toolbarFixedTopOffset: 60,
-    imageUpload: '/upload.php?image=1',
-    fileUpload: '/upload.php?file=1',
-    //fileDownload: '/admin/default/downloadFile/'
-  });*/
-});
-
-$('.redactor-mini').each(function(){
-  $(this).redactor({
-      toolbar: 'mini',
-      removeClasses: true,
-      removeStyles: true,
-  });
-});
-
+//{selector:'#'+$(this).attr('id'),height:300,plugins:["advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker","searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking","save table contextmenu directionality emoticons template paste textcolor"],toolbar:"insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",style_formats:[{title:"Bold text",inline:"b"},{title:"Red text",inline:"span",styles:{color:"#ff0000"}},{title:"Red header",block:"h1",styles:{color:"#ff0000"}},{title:"Example 1",inline:"span",classes:"example1"},{title:"Example 2",inline:"span",classes:"example2"},{title:"Table styles"},{title:"Table row 1",selector:"tr",classes:"tablerow1"}]}
 
 var tinymceConfig = {
     selector:'.redactor',
     plugins: [
-        'link image imagetools table autoresize collections gallery code paste media lists fullscreen stickytoolbar form hrreserve pagenews faq recordSearch map'
+        'link image imagetools table autoresize code paste media lists fullscreen'
     ],
-    menu: {
-        custom: { title: 'Плагины', items: 'form gallery collections hrreserve pagenews faq recordSearch map'}
-    },
     menubar: 'file edit view insert format tools table custom',
     contextmenu: "link image imagetools table spellchecker",
     toolbar: "code fullscreen | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist blockquote | link image media",
     language: 'ru',
-    extended_valid_elements : "faq[data-ids|data-category],map[data-id],searchrecord[data-encodedata],pagenews[data-id],hrreserve[pagesize],collection[data-id|data-encodedata],gallery[data-id|data-limit|data-type],forms[data-id|data-data]",
-    content_css : "/js/tinymce/admin.css",
+//    extended_valid_elements : "faq[data-ids|data-category],map[data-id],searchrecord[data-encodedata],pagenews[data-id],hrreserve[pagesize],collection[data-id|data-encodedata],gallery[data-id|data-limit|data-type],forms[data-id|data-data]",
+    //content_css : "/js/tinymce/admin.css",
     image_title: true,
-    images_upload_url: '/media/tinymce',
+    images_upload_url: '/master/media/tinymce',
     automatic_uploads: true,
     paste_data_images: true,
     file_picker_types: 'file image',
@@ -190,6 +165,31 @@ var tinymceConfig = {
     }
 };
 
+ $('.redactor').each(function(){
+  //console.log($(this).attr('id'));
+  tinymce.init(tinymceConfig);
+
+  /*$(this).redactor({
+    removeClasses: true,
+    removeStyles: true,
+    toolbarFixed: true,
+    //linebreaks: true,
+    toolbarFixedTopOffset: 60,
+    imageUpload: '/upload.php?image=1',
+    fileUpload: '/upload.php?file=1',
+    //fileDownload: '/admin/default/downloadFile/'
+  });*/
+});
+
+$('.redactor-mini').each(function(){
+  $(this).redactor({
+      toolbar: 'mini',
+      removeClasses: true,
+      removeStyles: true,
+  });
+});
+
+
 function reordModels($block,$data)
 {
   var ords = [];
@@ -212,7 +212,7 @@ function reordModels($block,$data)
       data: {ords: ords, _csrf: csrf_value},
       success: function(data)
       {
-        toastr.success('Порядок изменен', '');
+        
       }
   });
 }

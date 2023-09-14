@@ -2,16 +2,16 @@
 
 namespace app\modules\master\controllers;
 
-use app\models\Event;
-use app\models\search\Event as EventSearch;
+use app\models\Order;
+use app\models\search\OrderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * EventController implements the CRUD actions for Event model.
+ * OrderController implements the CRUD actions for Order model.
  */
-class EventController extends Controller
+class OrderController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class EventController extends Controller
     }
 
     /**
-     * Lists all Event models.
+     * Lists all Order models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new EventSearch();
+        $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,8 +48,8 @@ class EventController extends Controller
     }
 
     /**
-     * Displays a single Event model.
-     * @param int $id Id Event
+     * Displays a single Order model.
+     * @param int $id Id Order
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -61,17 +61,17 @@ class EventController extends Controller
     }
 
     /**
-     * Creates a new Event model.
+     * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Event();
+        $model = new Order();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id_event]);
+                return $this->redirect(['view', 'id' => $model->id_order]);
             }
         } else {
             $model->loadDefaultValues();
@@ -83,9 +83,9 @@ class EventController extends Controller
     }
 
     /**
-     * Updates an existing Event model.
+     * Updates an existing Order model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id Id Event
+     * @param int $id Id Order
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -94,7 +94,7 @@ class EventController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_event]);
+            return $this->redirect(['view', 'id' => $model->id_order]);
         }
 
         return $this->render('update', [
@@ -103,9 +103,9 @@ class EventController extends Controller
     }
 
     /**
-     * Deletes an existing Event model.
+     * Deletes an existing Order model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id Id Event
+     * @param int $id Id Order
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -116,39 +116,16 @@ class EventController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionTemplate($id)
-    {
-        $event = $this->findModel($id);
-        
-        $block = new Block;
-        $block->id_event = $id;
-        $blocks = $event->blocks;
-
-        if ($block->load(Yii::$app->request->post()) && $block->validate())
-        {
-            $block->ord = $event->getBlocks()->count()-1;
-
-            if ($block->save())
-                $this->redirect(['block/update','id'=>$block->id_block]);
-        }
-
-        return $this->render('template',[
-            'model'=>$event,
-            'block'=>$block,
-            'blocks'=>$blocks,
-        ]);
-    }
-
     /**
-     * Finds the Event model based on its primary key value.
+     * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id Id Event
-     * @return Event the loaded model
+     * @param int $id Id Order
+     * @return Order the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Event::findOne(['id_event' => $id])) !== null) {
+        if (($model = Order::findOne(['id_order' => $id])) !== null) {
             return $model;
         }
 

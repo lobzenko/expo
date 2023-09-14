@@ -44,14 +44,19 @@ class Order extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_order' => 'Id Order',
-            'id_subplace' => 'Id Subplace',
+            'id_order' => 'ID',
+            'id_subplace' => 'Локация',
             'name' => 'ФИО',
             'phone' => 'Телефон',
             'email' => 'Email',
-            'created_at' => 'Created At',
+            'created_at' => 'Создано',
             'date' => 'Дата',
             'time' => 'Время',
         ];
+    }
+
+     public function getSubplace()
+    {
+        return $this->hasOne(Subplace::className(), ['id_subplace' => 'id_subplace']);
     }
 }

@@ -26,10 +26,6 @@ use app\models\Menu;
 
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-            <?= $form->field($model, 'keywords')->textInput(['maxlength' => 255]) ?>
-
-            <?= $form->field($model, 'template')->dropDownList($model::templates)?>
-
             <?= $form->field($model, 'content')->textarea(['rows' => 16,'class'=>'form-control redactor']) ?>
         </div>
     </div>

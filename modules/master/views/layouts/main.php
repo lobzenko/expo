@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use app\modules\master\assets\AppMasterAsset;
+
 $this->beginPage()?>
 <!doctype html>
 <html lang="en">

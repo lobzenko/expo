@@ -72,10 +72,12 @@ new Swiper('#responses .swiper', {
   }
 });
 
-
 jQuery(document).ready(function(){
 
-    $("#cart-form").submit(function(){
+    $("#cart-form").submit(function(e){
+
+        e.preventDefault();
+        e.stopPropagation();
 
         let $form = $("#cart-form");
         

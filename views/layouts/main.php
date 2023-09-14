@@ -9,6 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use app\models\Vars;
 
 AppAsset::register($this);
 
@@ -41,7 +42,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         <?php
           $menu = app\models\Menu::find()->where(['alias'=>'top_menu'])->one();          
           if (!empty($menu))
-
           {
             foreach ($menu->activeElements as $key => $data) {?>
               <li class="nav-item">                
@@ -49,8 +49,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
               </li>
         <?php }
           }
-        ?>
-        
+        ?>        
       </ul>
     </div>
   </div>
@@ -78,15 +77,15 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
           </div>
           <div class="col-md-3 col-6">
               <b>Адрес</b>
-              <p>г. Красноярск, пр. Свободный, 82, стр. 9</p>
+              <p><?=nl2br(Vars::getVar('address'))?></p>
           </div>
           <div class="col-md-3 col-6">
               <b>Часы работы</b>
-              <p>Будние дни: 8:30-17:00<br/> сб, вс: Выходной</p>
+              <p><?=nl2br(Vars::getVar('worktime'))?></p>
           </div>
           <div class="col-md-3 col-6">
               <b>Контакты</b>
-              <p>expo@sfu-kras.ru<br>+7 (913) 206-53-41</p>
+              <p><?=nl2br(Vars::getVar('contacts'))?></p>
           </div>            
       </div>
     </div>
@@ -95,7 +94,15 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
       <div class="row">
           <div class="col">&copy;2023, All right reserved.</div>
           <div class="col text-right">
-              <a href="/about/policy"><strong>Политика конфиденциальности</strong></a>
+            <?php
+              $menu = app\models\Menu::find()->where(['alias'=>'footer'])->one();          
+              if (!empty($menu))
+              {
+                foreach ($menu->activeElements as $key => $data) {?>                  
+                    <a href="<?=$data->url?>"><strong><?=$data->name?></strong></a>                  
+            <?php }
+              }
+            ?>
           </div>
       </div>          
     </div>

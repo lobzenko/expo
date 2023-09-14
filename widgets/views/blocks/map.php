@@ -37,7 +37,7 @@ $script = <<< JS
             mapObject.geoObjects.add(pointTemp);
         }
 
-        //mapObject.setBounds(mapObject.geoObjects.getBounds());
+        mapObject.setBounds(mapObject.geoObjects.getBounds());
     }
 
     ymaps.ready(init);

@@ -8,6 +8,7 @@ use app\models\Rub;
 use app\models\Event;
 use app\models\SubEvent;
 use app\models\search\EventSearch;
+use yii\web\NotFoundHttpException;
 
 class EventController extends \app\components\BaseController
 {
@@ -49,11 +50,19 @@ class EventController extends \app\components\BaseController
         ]);
     }    
 
-    public function actionView($id)
+    public function actionView($alias)
     {
-        $model = Event::findOne($id);
+        $model = Event::find()->where(['alias'=>$alias])->one();
 
-        $this->setSeo();
+        if (empty($model) || !$model->state)
+            throw new NotFoundHttpException();
+
+        $this->setSeo($model);
+
+        if (!empty($model->blocks))
+            return $this->render('blocks',[
+                'model'=>$model                
+            ]);
 
         return $this->render('view',[
             'model'=>$model,        

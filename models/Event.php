@@ -33,7 +33,7 @@ class Event extends \yii\db\ActiveRecord
             [['id_media', 'state'], 'integer'],
             [['name', 'date_begin', 'date_end'], 'required'],
             [['name','description'], 'string', 'max' => 255],
-            [['date_begin', 'date_end'],'safe'],
+            [['date_begin', 'date_end','content'],'safe'],
         ];
     }
 
@@ -47,6 +47,7 @@ class Event extends \yii\db\ActiveRecord
             'id_media' => 'Id Media',
             'name' => 'Название',
             'description' => 'Описание',
+            'content' => 'Содержание',
             'date_begin' => 'Дата начала',
             'date_end' => 'Дата конца',
             'state' => 'Статус',
@@ -83,6 +84,8 @@ class Event extends \yii\db\ActiveRecord
 
     public function beforeValidate()
     {
+        $this->alias = strtolower(\app\helpers\helper\Helper::transFileName($this->name));
+
         if (!empty($this->date_begin) && !is_numeric($this->date_begin))
             $this->date_begin = strtotime($this->date_begin);
 
@@ -90,6 +93,11 @@ class Event extends \yii\db\ActiveRecord
             $this->date_end = strtotime($this->date_end);
 
         return parent::beforeValidate();
+    }
+
+    public function getUrl()
+    {
+        return '/event/'.$this->alias;
     }
 
     public function getMedia()
@@ -107,6 +115,11 @@ class Event extends \yii\db\ActiveRecord
         return $this->hasMany(Rub::className(), ['id_rub' => 'id_rub'])->viaTable('dbl_rub_event',['id_event'=>'id_event']);
     }
 
+    public function getBlocks()
+    {
+        return $this->hasMany(Block::class, ['id_event' => 'id_event'])->orderBy('ord ASC');
+    }
+        
     public function behaviors()
     {
         return [

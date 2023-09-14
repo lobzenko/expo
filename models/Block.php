@@ -43,7 +43,7 @@ class Block extends \yii\db\ActiveRecord
             ],
         ],
         '3column'=> [
-            'label'=>'3 колонки с изображениями',
+            'label'=>'3 колонки с изображениями и ссылкой',
             'vars'=>[
                 'sub_title'=>[
                     'name'=>'Подзаголовок',
@@ -71,6 +71,31 @@ class Block extends \yii\db\ActiveRecord
                 ],
                 'image2'=>[
                     'name'=>'Изображение третья колонка',
+                    'type'=>BlockVar::TYPE_MEDIA,
+                ],
+            ],
+        ],
+        '3column_reverse'=> [
+            'label'=>'3 колонки с 2 изображениями',
+            'vars'=>[
+                'sub_title'=>[
+                    'name'=>'Подзаголовок',
+                    'type'=>BlockVar::TYPE_STRING,
+                ],
+                'title'=>[
+                    'name'=>'Заголовок',
+                    'type'=>BlockVar::TYPE_STRING,
+                ],
+                'description'=>[
+                    'name'=>'Описание',
+                    'type'=>BlockVar::TYPE_RICHTEXT,
+                ],                
+                'image'=>[
+                    'name'=>'Изображение первая колонка',
+                    'type'=>BlockVar::TYPE_MEDIA,
+                ],
+                'image2'=>[
+                    'name'=>'Изображение вторая колонка',
                     'type'=>BlockVar::TYPE_MEDIA,
                 ],
             ],
@@ -131,6 +156,7 @@ class Block extends \yii\db\ActiveRecord
                     'default'=>'ОБРАТНАЯ СВЯЗЬ',
                 ],
             ],
+            'widget'=>'app\widgets\FormWidget',
         ],
         'response'=> [
             'label'=>'Отзывы',
@@ -155,12 +181,10 @@ class Block extends \yii\db\ActiveRecord
                 'sub_title'=>[
                     'name'=>'Подзаголовок',
                     'type'=>BlockVar::TYPE_STRING,
-                    'default'=>'Заявка',
                 ],
                 'title'=>[
                     'name'=>'Заголовок',
-                    'type'=>BlockVar::TYPE_STRING,
-                    'default'=>'ОБРАТНАЯ СВЯЗЬ',
+                    'type'=>BlockVar::TYPE_STRING,                    
                 ],
             ],
         ],
@@ -184,7 +208,7 @@ class Block extends \yii\db\ActiveRecord
                     ]
                 ],
                 'limit'=>[
-                    'name'=>'Количетсво',
+                    'name'=>'Количество',
                     'type'=>BlockVar::TYPE_STRING,                    
                 ],
             ],
@@ -199,6 +223,14 @@ class Block extends \yii\db\ActiveRecord
                 'title'=>[
                     'name'=>'Заголовок',
                     'type'=>BlockVar::TYPE_STRING,                    
+                ],
+                'h'=>[
+                    'name'=>'Тег заголовка',
+                    'type'=>BlockVar::TYPE_SELECT,
+                    'values'=>[
+                        'h2'=>'H2',
+                        'h1'=>'H1'
+                    ]
                 ],
             ],
         ],
@@ -216,6 +248,35 @@ class Block extends \yii\db\ActiveRecord
                 ],
             ],
         ],
+        'event'=> [
+            'label'=>'Карусель событий',
+            'vars'=>[
+                'sub_title'=>[
+                    'name'=>'Подзаголовок',
+                    'type'=>BlockVar::TYPE_STRING,
+                ],
+                'title'=>[
+                    'name'=>'Заголовок',
+                    'type'=>BlockVar::TYPE_STRING,                    
+                ],
+                'limit'=>[
+                    'name'=>'Количество',
+                    'type'=>BlockVar::TYPE_STRING,                    
+                ],
+                'background'=>[
+                    'name'=>'Цвет фона',
+                    'type'=>BlockVar::TYPE_STRING,                    
+                ],
+                'color'=>[
+                    'name'=>'Цвет текста',
+                    'type'=>BlockVar::TYPE_STRING,                    
+                ],
+                'background_image'=>[
+                    'name'=>'Изображение фона',
+                    'type'=>BlockVar::TYPE_MEDIA,                    
+                ],
+            ],
+        ],
         'places'=> [
             'label'=>'Карусель площадок',
             'vars'=>[
@@ -228,7 +289,7 @@ class Block extends \yii\db\ActiveRecord
                     'type'=>BlockVar::TYPE_STRING,                    
                 ],
                 'limit'=>[
-                    'name'=>'Количетсво',
+                    'name'=>'Количество',
                     'type'=>BlockVar::TYPE_STRING,                    
                 ],
             ],
@@ -259,7 +320,7 @@ class Block extends \yii\db\ActiveRecord
                     'type'=>BlockVar::TYPE_STRING,                    
                 ],
                 'limit'=>[
-                    'name'=>'Количетсво',
+                    'name'=>'Количество',
                     'type'=>BlockVar::TYPE_STRING,                    
                 ],
             ],
@@ -665,8 +726,8 @@ class Block extends \yii\db\ActiveRecord
 
     public function getPage()
     {        
-        if (!empty($this->id_service))
-            return $this->hasOne(Service::class, ['id_service' => 'id_service']);
+        if (!empty($this->id_event))
+            return $this->hasOne(Event::class, ['id_event' => 'id_event']);
         else if (!empty($this->id_place))
             return $this->hasOne(Place::class, ['id_place' => 'id_place']);
         else     
