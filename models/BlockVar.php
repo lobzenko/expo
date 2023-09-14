@@ -31,6 +31,7 @@ class BlockVar extends \yii\db\ActiveRecord
     const TYPE_USER = 14;
     const TYPE_SELECT = 15;    
     const TYPE_COLOR = 18;
+    const TYPE_SERVICE = 19;
     
 
     /**

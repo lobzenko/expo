@@ -198,7 +198,11 @@ class Block extends \yii\db\ActiveRecord
                 'title'=>[
                     'name'=>'Заголовок',
                     'type'=>BlockVar::TYPE_STRING,                    
-                ],
+                ],                
+                'services'=>[
+                    'name'=>'Услуги',
+                    'type'=>BlockVar::TYPE_SERVICE,
+                ],                
                 'template'=>[
                     'name'=>'Вид отображения',
                     'type'=>BlockVar::TYPE_SELECT,
@@ -210,6 +214,18 @@ class Block extends \yii\db\ActiveRecord
                 'limit'=>[
                     'name'=>'Количество',
                     'type'=>BlockVar::TYPE_STRING,                    
+                ],
+                'background'=>[
+                    'name'=>'Цвет фона',
+                    'type'=>BlockVar::TYPE_STRING,                    
+                ],
+                'color'=>[
+                    'name'=>'Цвет текста',
+                    'type'=>BlockVar::TYPE_STRING,                    
+                ],
+                'background_image'=>[
+                    'name'=>'Изображение фона',
+                    'type'=>BlockVar::TYPE_MEDIA,                    
                 ],
             ],
         ],
@@ -325,284 +341,6 @@ class Block extends \yii\db\ActiveRecord
                 ],
             ],
         ],
-        /*'footer'=> [
-            'label'=>'Подвал сайта',
-            'vars'=>[
-                'menu'=>[
-                    'name'=>'Меню',
-                    'type'=>BlockVar::TYPE_MENU,
-                ],
-                'phone'=>[
-                    'name'=>'Телефон/факс',
-                    'type'=>BlockVar::TYPE_RICHTEXT,
-                ],
-                'address'=>[
-                    'name'=>'Адрес',
-                    'type'=>BlockVar::TYPE_RICHTEXT,
-                ],
-                'service_mail'=>[
-                    'name'=>'Отдел служебных писем',
-                    'type'=>BlockVar::TYPE_RICHTEXT,
-                ],
-                'people_request'=>[
-                    'name'=>'Обращения граждан',
-                    'type'=>BlockVar::TYPE_RICHTEXT,
-                ],
-                'trust_phone'=>[
-                    'name'=>'Телефон доверия',
-                    'type'=>BlockVar::TYPE_RICHTEXT,
-                ],
-            ],
-            'layout'=>true,
-        ],
-        'news'=> [
-            'label'=>'Новостной блок',
-            'widget'=>'frontend\widgets\NewsWidget',
-            'vars'=>[
-                'title'=>[
-                    'name'=>'Заголовок',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'menu'=>[
-                    'name'=>'Меню в табах',
-                    'type'=>BlockVar::TYPE_MENU,
-                ],
-            ]
-        ],
-        'news_single'=> [
-            'label'=>'Новостной блок, без меню',
-            'widget'=>'frontend\widgets\NewsWidget',
-            'vars'=>[
-                'title'=>[
-                    'name'=>'Заголовок',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'button_text'=>[
-                    'name'=>'Подпись кнопки',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'button_color'=>[
-                    'name'=>'Цвет кнопки',
-                    'type'=>BlockVar::TYPE_SELECT,
-                    'values'=>[
-                        ''=>'Белая',
-                        'btn__primary'=>'Золотой'
-                    ]
-                ],
-                'background'=>[
-                    'name'=>'Фон',
-                    'type'=>BlockVar::TYPE_SELECT,
-                    'values'=>[
-                        ''=>'Серый',
-                        'press_invert'=>'Белый'
-                    ]
-                ],
-                'id_page'=>[
-                    'name'=>'Раздел новостей',
-                    'type'=>BlockVar::TYPE_PAGE,
-                ],
-            ]
-        ],
-        'photoflip'=> [
-            'label'=>'Гид по городу',
-            'vars'=>[
-                'title'=>[
-                    'name'=>'Заголовок',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'menu'=>[
-                    'name'=>'Меню',
-                    'type'=>BlockVar::TYPE_MENU,
-                ],
-                'medias'=>[
-                    'name'=>'Галерея',
-                    'type'=>BlockVar::TYPE_MEDIAS,
-                ]
-            ]
-        ],
-        'poll'=> [
-            'label'=>'Голосование',
-            'widget'=> 'frontend\widgets\PollWidget',
-            'vars'=>[
-                'menu'=>[
-                    'name'=>'Меню справо',
-                    'type'=>BlockVar::TYPE_MENU,
-                ],
-                'id_poll_question'=>[
-                    'name'=>'Вопрос для вывода',
-                    'type'=>BlockVar::TYPE_QUESTION,
-                ],
-                'button'=>[
-                    'name'=>'Подпись кнопки',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'button_url'=>[
-                    'name'=>'Ссылка кнопки',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-            ]
-        ],
-        'video_section'=> [
-            'label'=>'Видео блок',
-            //'widget'=> 'frontend\widgets\ServiceSearchWidget',
-            'vars'=>[
-                'name'=>[
-                    'name'=>'Название',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'cover'=>[
-                    'name'=>'Обложка',
-                    'type'=>BlockVar::TYPE_MEDIA,
-                ],
-                'youtube'=>[
-                    'name'=>'Ссылка Youtube',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-            ]
-        ],
-        'event_blockquote'=> [
-            'label'=>'Цитата',
-            'vars'=>[
-                'title'=>[
-                    'name'=>'Заголовок',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'content'=>[
-                    'name'=>'Описание',
-                    'type'=>BlockVar::TYPE_RICHTEXT,
-                ],
-                
-            ]
-        ],        
-        'event_programm'=> [
-            'label'=>'Программа мероприятия',
-            'vars'=>[
-                'collection'=>[
-                    'name'=>'Список',
-                    'type'=>BlockVar::TYPE_RICHTEXT,
-                ],
-            ]
-        ],
-        'event_main'=> [
-            'label'=>'Шапка события',
-            'vars'=>[
-                'title'=>[
-                    'name'=>'Заголовок',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'cover'=>[
-                    'name'=>'Обложка',
-                    'type'=>BlockVar::TYPE_MEDIAS,
-                ],
-                'cover_mobile'=>[
-                    'name'=>'Обложка мобильная',
-                    'type'=>BlockVar::TYPE_MEDIAS,
-                ],
-                'content'=>[
-                    'name'=>'Описание',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'countdown_title'=>[
-                    'name'=>'Заголовок обратного отсчета',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'countdown'=>[
-                    'name'=>'Дата начала',
-                    'type'=>BlockVar::TYPE_DATE,
-                ],
-                
-                'id_page'=>[
-                    'name'=>'Раздел для программ мероприятий',
-                    'type'=>BlockVar::TYPE_PAGE,
-                ],
-                'background'=>[
-                    'name'=>'Подложка под текст',
-                    'type'=>BlockVar::TYPE_CHECKBOX,
-                ],
-            ]
-        ],
-        'service_search'=> [
-            'label'=>'Поиск муниципальных услуг',
-            'widget'=> 'frontend\widgets\ServiceSearchWidget',
-            'vars'=>[
-                'title'=>[
-                    'name'=>'Заголовок',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'services'=>[
-                    'name'=>'Слайды сервисов',
-                    'type'=>BlockVar::TYPE_MENU,
-                ],
-            ]
-        ],
-        'service_menu'=> [
-            'label'=>'Жизненные ситуации',
-            'widget'=> 'frontend\widgets\ServiceSituationWidget',
-            'vars'=>[
-                'bytype'=>[
-                    'name'=>'Разделение на Юр/Физ лица',
-                    'type'=>BlockVar::TYPE_CHECKBOX,
-                ],
-            ]
-        ],
-        'partners'=> [
-            'label'=>'Партнеры',
-            'widget'=>'frontend\widgets\MenuWidget',
-            'vars'=>[
-                'menu'=>[
-                    'name'=>'Партнеры',
-                    'type'=>BlockVar::TYPE_MENU,
-                ],
-                'template'=>[
-                    'name'=>'Шаблон',
-                    'type'=>BlockVar::TYPE_SELECT,
-                    'values'=>[
-                        'partners'=>'Как блок на странице',
-                        'partners_full'=>'На всю страницу'
-                    ]
-                ],
-            ]
-        ],
-        'grid'=> [
-            'label'=>'Сетка ссылок',
-            'widget'=>'frontend\widgets\MenuWidget',
-            'vars'=>[
-                'menu'=>[
-                    'name'=>'Меню',
-                    'type'=>BlockVar::TYPE_MENU,
-                ],
-                'template'=>[
-                    'name'=>'Шаблон',
-                    'type'=>BlockVar::TYPE_HIDDEN,
-                    'value'=>'grid'
-                ],
-            ]
-        ],
-        'tabs'=> [
-            'label'=>'Белый блок с табами',
-            'widget'=>'frontend\widgets\MenuWidget',
-            'vars'=>[
-                'menu'=>[
-                    'name'=>'Меню',
-                    'type'=>BlockVar::TYPE_MENU,
-                ],
-            ]
-        ],
-        'events'=> [
-            'label'=>'Городские проекты и события',
-            'widget'=>'frontend\widgets\ProjectWidget',
-            'vars'=>[
-                'title'=>[
-                    'name'=>'Заголовок',
-                    'type'=>BlockVar::TYPE_STRING,
-                ],
-                'id_page'=>[
-                    'name'=>'Раздел',
-                    'type'=>BlockVar::TYPE_PAGE,
-                ],
-            ]
-        ],
-        */
         'content'=> [
             'label'=>'Содержение страницы',
         ],

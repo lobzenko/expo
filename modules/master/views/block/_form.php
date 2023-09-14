@@ -68,6 +68,23 @@ use kartik\select2\Select2;
 	                    ],
                 	]);
                 	break;
+                case $var::TYPE_SERVICE:					
+					$models = ArrayHelper::map(\app\models\Service::find()->all(), 'id_service', 'name');
+
+					$var->value = json_decode($var->value,true);
+
+					echo $form->field($var, "[$ckey]value")->widget(Select2::class, [
+	                    'data' => $models,
+	                    'pluginOptions' => [
+	                        'allowClear' => true,
+	                        'placeholder' => 'Услуги',
+	                        'multiple'=>true,
+	                    ],
+	                    'options'=>[
+	                    	'multiple'=>true,
+	                	]
+                	])->label(false);
+					break;
 	            case $var::TYPE_PAGE:
 	            	echo $form->field($var, "[$ckey]value")->widget(Select2::class, [
 	                    'data' => ArrayHelper::map(\common\models\Page::find()->all(), 'id_page', 'title'),

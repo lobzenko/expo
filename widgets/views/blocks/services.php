@@ -1,7 +1,14 @@
 <?php 
-    $records = \app\models\Service::find()->where(['state'=>1])->limit($limit??100)->all();
+  if (!empty($services->value))
+  {
+      $ids = json_decode($services->value,true);
+      $records = \app\models\Service::find()->where(['state'=>1,'id_service'=>$ids])->limit($limit??100)->all();
+  }
+  else 
+      $records = \app\models\Service::find()->where(['state'=>1])->limit($limit??100)->all();
 ?>
-<div class="container py-5">
+<div class="container-cover" style="<?=(!empty($background)?'background-color:'.$background.';':'')?> <?=(!empty($color)?'color:'.$color.';':'')?> <?=(!empty($background_image->media)?'background-image:url('.$background_image->media->showThumb(['w'=>1920]).');':'')?>">
+  <div class="container py-5">
     <p class="pre-header"><?=$sub_title?></p>
     <h2 class="mb-5"><?=$title?></h2>
 
@@ -48,6 +55,5 @@
       <?php }?>
       </div>
     <?php }?>
-
-    
+  </div>    
 </div>
