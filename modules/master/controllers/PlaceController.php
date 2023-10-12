@@ -55,6 +55,7 @@ class PlaceController extends Controller
 
         return $this->render('view', [
             'model' => $model,
+            'searchModel'=>$searchModel,
             'dataProvider'=>$dataProvider,
         ]);
     }
