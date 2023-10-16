@@ -33,23 +33,32 @@
       <div class="col-md-4 d-flex flex-column justify-content-end fs-15 <?=$key%2==0?'':'order-0 order-md-1'?>">
         <h4 class="fs-18 text-uppercase mb-0"><?=$data->name?></h4>
         <?php 
-            $year_b = date('Y',$data->date_begin);
-            $year_e = date('Y',$data->date_end);
 
-            if ( $year_b == $year_e)
+            if ($data->date_begin == $data->date_end)
             {
-              $month_b = strftime('%B',$data->date_begin);
-              $month_e = strftime('%B',$data->date_end);
-
-              if ($month_b == $month_e)
-              {
-                echo date('d',$data->date_begin).'-'.date('d',$data->date_end).' '.strftime('%B %Y',$data->date_begin).' г.';
-              }
-              else 
-                echo strftime('%d %B',$data->date_begin).'-'.strftime('%d %B',$data->date_end).' '.date('Y',$data->date_begin).' г.';
+                echo Yii::$app->formatter->asDate($data->date_begin,'long');
             }
             else 
-              echo strftime('%d %B %Y ',$data->date_begin).'-'.strftime('%d %B %Y г.',$data->date_end);
+            {
+              $year_b = date('Y',$data->date_begin);
+              $year_e = date('Y',$data->date_end);
+
+              if ( $year_b == $year_e)
+              {
+
+                $month_b = Yii::$app->formatter->asDate($data->date_begin, 'MMMM');//strftime('%B',$data->date_begin);
+                $month_e = Yii::$app->formatter->asDate($data->date_end, 'MMMM');//strftime('%B',$data->date_end);
+
+                if ($month_b == $month_e)
+                {
+                  echo date('d',$data->date_begin).'-'.date('d',$data->date_end).' '.$month_b.' '.date('Y',$data->date_begin).' г.';
+                }
+                else 
+                  echo Yii::$app->formatter->asDate('DDDD MMMM',$data->date_begin).'-'.Yii::$app->formatter->asDate('DDDD MMMM',$data->date_end).' '.date('Y',$data->date_begin).' г.';
+              }
+              else 
+                echo Yii::$app->formatter->asDate($data->date_begin,'long').'-'.Yii::$app->formatter->asDate($data->date_end,'long');
+            }
         ?>
         <p class="my-3"><?=$data->description?></p>
         <a class="arrow" href="<?=$data->getUrl()?>">Подробнее</a>
