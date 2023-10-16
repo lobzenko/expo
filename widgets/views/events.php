@@ -28,7 +28,9 @@
   <?php foreach ($events as $key=>$data){?>
   <div class="row mb-lg-4 mb-5">
       <div class="col-md-8 <?=$key%2==0?'order-0':'order-1 order-md-0'?>">
-          <img class="mb-4 mb-md-0" src="<?=$data->media->showThumb(['w'=>730])?>" alt="" />
+          <?php if (!empty($data->media)){?>
+          <img class="mb-4 mb-md-0 w-100" src="<?=$data->media->showThumb(['w'=>730])?>" alt="" />
+          <?php }?>
       </div>
       <div class="col-md-4 d-flex flex-column justify-content-end fs-15 <?=$key%2==0?'':'order-0 order-md-1'?>">
         <h4 class="fs-18 text-uppercase mb-0"><?=$data->name?></h4>
