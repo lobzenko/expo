@@ -35,7 +35,6 @@
       <div class="col-md-4 d-flex flex-column justify-content-end fs-15 <?=$key%2==0?'':'order-0 order-md-1'?>">
         <h4 class="fs-18 text-uppercase mb-0"><?=$data->name?></h4>
         <?php 
-
             if ($data->date_begin == $data->date_end)
             {
                 echo Yii::$app->formatter->asDate($data->date_begin,'long');
