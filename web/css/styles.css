@@ -75,7 +75,7 @@ nav a.active, .nav a.active {font-weight: 600; color: #4F4F4F!important;}
 
 .fw-bold {font-weight: bold;}
 
-.card img {width: 100%;}
+.card img {width: 100%; height: 100%; object-fit: cover; aspect-ratio: 0.87;}
 
 .card-body {width: 100%; padding: 30px;}
 .card-text {font-size: 15px;}
