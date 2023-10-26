@@ -127,7 +127,8 @@ textarea.form-control::placeholder,input.form-control::placeholder {
     margin: -12px;
     width: 100%;
 }
-#modal-swiper.swiper {padding: 0px; margin: 0px;}
+#modal-swiper.swiper {padding: 0px; margin: 0px; height: 100%;}
+#modal-swiper.swiper img {height: 100%; object-fit: cover;}
 
 .swiper-button-disabled {display: none;}
 .carousel {position: relative; display: flex;}
@@ -143,7 +144,7 @@ textarea.form-control::placeholder,input.form-control::placeholder {
 .swiper-button-prev:after, .swiper-button-next:after {display: none;}
 .swiper-button-prev {left: -75px; transform:scaleX(-1);}
 
-.modal-lg {width: 850px;}
+.modal-lg {width: 900px; max-width: 900px;}
 .modal .btn-lg {width: 100%; min-width: inherit;}
 
 .modal .swiper-pagination {margin-bottom: 30px;}

@@ -1,15 +1,15 @@
 <div class="row">
-    <div class="col-lg-7">
+    <div class="col-lg-7 pe-0">
         <div id="modal-swiper" class="swiper">                        
           <div class="swiper-wrapper">
             <?php foreach ($model->medias as $media){?>
-            <div class="swiper-slide"><img src="<?=$media->showThumb(['w'=>800])?>"></div>
+            <div class="swiper-slide"><img src="<?=$media->showThumb(['w'=>800,'h'=>800])?>"></div>
             <?php }?>
           </div>                        
           <div class="swiper-pagination"></div>
         </div>
     </div>
-    <div class="col-lg-5 d-flex flex-column justify-content-center">
+    <div class="col-lg-5 ps-0 d-flex flex-column justify-content-center">
         <div class="p-4">
           <h2 class=""><?=$model->name?></h2>
           <p class="my-4"><?=$model->place->address?></p>
