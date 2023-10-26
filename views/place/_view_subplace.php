@@ -1,7 +1,7 @@
 <div class="col-md-4 mb-4">
   <a href="/place/modal/<?=$model->id_subplace?>" class="card place-modal">
     <div class="card-image">
-        <img src="<?=$model->media->showThumb(['w'=>350])?>" class="card-img-top" alt="">
+        <img src="<?=$model->media->showThumb(['w'=>350,'h'=>400])?>" class="card-img-top" alt="">
         <span class="price"><?=$model->price?>/<?=$model->price_type?></span>
     </div>            
     <div class="card-body">
