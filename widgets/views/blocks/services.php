@@ -20,7 +20,7 @@
           <div class="swiper-slide">
             <div class="card">
               <?php if (!empty($data->media)){?>
-              <img src="<?=$data->media->showThumb(['w'=>350])?>" class="card-img-top" alt="">
+              <img src="<?=$data->media->showThumb(['w'=>350,'h'=>402])?>" class="card-img-top" alt="">
               <?php }?>
               <div class="card-body">
                   <h5 class="card-title"><?=$data->name?></h5>            
@@ -44,7 +44,7 @@
           <div class="col-md-6 col-lg-4 mb-4">
             <div class="card">
               <?php if (!empty($data->media)){?>
-              <img src="<?=$data->media->showThumb(['w'=>350])?>" class="card-img-top" alt="">
+              <img src="<?=$data->media->showThumb(['w'=>350,'h'=>402])?>" class="card-img-top" alt="">
               <?php }?>
               <div class="card-body">
                   <h5 class="card-title"><?=$data->name?></h5>            

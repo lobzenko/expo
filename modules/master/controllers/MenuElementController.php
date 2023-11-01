@@ -128,4 +128,12 @@ class MenuElementController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionOrder()
+    {
+        $ords = Yii::$app->request->post('ords');
+
+        foreach ($ords as $key => $id_block)
+            Yii::$app->db->createCommand()->update('db_menu_element',['ord'=>$key],['id_element'=>$id_block])->execute();
+    }
 }

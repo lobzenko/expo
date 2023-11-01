@@ -21,7 +21,7 @@ class EventWidget extends \yii\base\Widget
         if (!empty($id_rub))
             $records->joinWith('rubs as rubs')->where(['rubs.id_rub' => $id_rub]);
 
-        $records = $records->andWhere(['db_event.state'=>1])->all();
+        $records = $records->andWhere(['db_event.state'=>1])->orderBy('date_begin DESC')->all();
 
         $blockVars['records'] = $records; 
         $blockVars['rubs'] = Rub::find()->where(['state'=>1])->all();    

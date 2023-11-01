@@ -1,5 +1,5 @@
 <?php 
-  $this->params['breadcrumbs'][] = ['label' => 'Площадки', 'url' => ['place']];
+  $this->params['breadcrumbs'][] = ['label' => 'Площадки', 'url' => ['/place']];
   $this->params['breadcrumbs'][] = $model->name;
 ?>
 

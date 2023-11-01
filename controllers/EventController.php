@@ -21,7 +21,7 @@ class EventController extends \app\components\BaseController
     {        
         $rubs = Rub::find()->where(['state'=>1])->all();
         
-        $events = Event::find()->all();
+        $events = Event::find()->orderBy('date_begin DESC')->all();
 
         $page = Page::findOne(['alias' => 'event']);
         

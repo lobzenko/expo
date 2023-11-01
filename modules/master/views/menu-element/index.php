@@ -28,10 +28,8 @@ $this->params['button-block'] = Html::a('Добавить', ['create','id'=>$id_
                 ]
             ],
             'tableOptions'=>[
-                'class'=>'panel table table-striped ids-style valign-middle ordered',
-                'data-table'=>'db_menu_element',
-                'data-pk'=>'id_element',
-                'data-where'=>'',
+                'class'=>'panel table table-striped ids-style valign-middle ordered',                
+                'data-order-url'=>"/master/menu-element/order"
             ]
         ]); ?>
     </div>
