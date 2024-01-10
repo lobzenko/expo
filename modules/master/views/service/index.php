@@ -43,7 +43,8 @@ $this->params['button-block'] = Html::a('Добавить', ['create'], ['class'
             ]
         ],
         'tableOptions'=>[
-            'class'=>'table dt-responsive w-100 dataTable no-footer dtr-inline ids-style'
+            'class'=>'table dt-responsive w-100 dataTable no-footer dtr-inline ids-style ordered',
+            'data-order-url'=>'/master/service/order'
         ]
     ]); ?>
     </div>

@@ -7,6 +7,7 @@ use app\models\search\Service as ServiceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * ServiceController implements the CRUD actions for Service model.
@@ -40,8 +41,9 @@ class ServiceController extends Controller
     {
         $searchModel = new ServiceSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->pagination->pageSize=100;
 
-        return $this->render('index', [
+        return $this->render('index', [ 
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -100,6 +102,14 @@ class ServiceController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionOrder()
+    {
+        $ords = Yii::$app->request->post('ords');
+
+        foreach ($ords as $key => $id)
+            Yii::$app->db->createCommand()->update('db_service',['ord'=>$key],['id_service'=>$id])->execute();
     }
 
     /**

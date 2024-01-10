@@ -2,10 +2,10 @@
   if (!empty($services->value))
   {
       $ids = json_decode($services->value,true);
-      $records = \app\models\Service::find()->where(['state'=>1,'id_service'=>$ids])->limit($limit??100)->all();
+      $records = \app\models\Service::find()->where(['state'=>1,'id_service'=>$ids])->limit($limit??100)->orderBy('ord ASC')->all();
   }
   else 
-      $records = \app\models\Service::find()->where(['state'=>1])->limit($limit??100)->all();
+      $records = \app\models\Service::find()->where(['state'=>1])->limit($limit??100)->orderBy('ord ASC')->all();
 ?>
 <div class="container-cover" style="<?=(!empty($background)?'background-color:'.$background.';':'')?> <?=(!empty($color)?'color:'.$color.';':'')?> <?=(!empty($background_image->media)?'background-image:url('.$background_image->media->showThumb(['w'=>1920]).');':'')?>">
   <div class="container py-5">

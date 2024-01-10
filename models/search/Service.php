@@ -40,12 +40,16 @@ class Service extends ServiceModel
      */
     public function search($params)
     {
-        $query = ServiceModel::find();
+        $query = ServiceModel::find()->orderBy('ord ASC');
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'attributes'=>[''],
+                'defaultOrder'=>'ord ASC'
+            ]
         ]);
 
         $this->load($params);
