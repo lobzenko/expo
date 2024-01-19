@@ -154,4 +154,27 @@ jQuery(document).ready(function(){
         return false;
       });    
     }
+
+    $("#placeModal").delegate('.add-to-cart','click',function(){    
+
+      //var cart = JSON.parse(Cookies.get('cart'));
+
+      var cart = Cookies.get('cart');
+
+      if (typeof cart == 'undefined')
+        cart = [];      
+      else 
+        cart = JSON.parse(cart);
+
+      if (cart.indexOf($(this).data('id'))==-1)
+        cart.push($(this).data('id'));
+
+      console.log(cart);
+      
+      Cookies.set('cart', JSON.stringify(cart), { expires: 10 });
+
+      $(this).removeClass('add-to-cart').text('Перейти в корзину')
+
+      return false;
+    });
 });

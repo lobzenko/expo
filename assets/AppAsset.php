@@ -27,6 +27,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js',
         'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js',
+        '/js/js.cookie.min.js',
         '/js/site.js',
     ];
     public $depends = [

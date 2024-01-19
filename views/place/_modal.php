@@ -16,7 +16,7 @@
           <p class="mb-4">Площадь: <?=$model->area?> кв.м.<br/>
               Посадочных мест: <?=$model->capacity?><br/>
               <?=nl2br($model->comment)?></p>
-          <a class="btn btn-primary btn-lg" href="/cart/<?=$model->id_subplace?>">Отправить заявку</a>
+          <a class="btn btn-primary btn-lg add-to-cart" data-id="<?=$model->id_subplace?>" href="/cart/<?=$model->id_subplace?>">Отправить заявку</a>
         </div>
     </div>
 </div>

@@ -20,14 +20,53 @@ class CartController extends \app\components\BaseController
      */
     public function actionIndex($id=0)
     {   
-        $id_subplace = Yii::$app->session->get('id_subplace');
+        /*$id_subplace = Yii::$app->session->get('id_subplace');
 
         if (!empty($id_subplace))
-            return $this->redirect('/cart/'.$id_subplace);
+            return $this->redirect('/cart/'.$id_subplace);*/
+
+        $cart = [];
+
+        if (!empty($_COOKIE['cart']))
+            $cart = json_decode($_COOKIE['cart'],true);
+
+        $records = [];
+
+        if (!empty($cart))        
+            $records = Subplace::find()->where(['id_subplace'=>$cart])->all();
+
+        $order = new Order();
+        $order->id_subplace = $id;
+        $order->created_at = time();
+
+        if ($order->load(Yii::$app->request->post()) && $order->save())
+        {
+            Yii::$app->session->remove('id_subplace',$id);
+            
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return [
+                'success'=>true
+            ];
+        }        
 
         return $this->render('index',[
+            'records'=>$records,
+            'order'=>$order,
         ]);
     }    
+
+    public function actionRemove($id)
+    {
+        $cart = [];
+        
+        if (!empty($_COOKIE['cart']))
+            $cart = json_decode($_COOKIE['cart'],true);    
+
+        array_diff($cart,[$id]);        
+        setcookie('cart', json_encode($cart), time()+7*24*3600, '/');
+
+        return $this->redirect('/cart');
+    }
 
     public function actionView($id)
     {        
@@ -50,7 +89,7 @@ class CartController extends \app\components\BaseController
             return [
                 'success'=>true
             ];
-        }
+        }        
 
         $this->setSeo();
 
