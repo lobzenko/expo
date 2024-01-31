@@ -41,7 +41,7 @@ class CartController extends \app\components\BaseController
 
         if ($order->load(Yii::$app->request->post()) && $order->save())
         {
-            Yii::$app->session->remove('id_subplace',$id);
+            //Yii::$app->session->remove('id_subplace',$id);
             
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
@@ -62,7 +62,10 @@ class CartController extends \app\components\BaseController
         if (!empty($_COOKIE['cart']))
             $cart = json_decode($_COOKIE['cart'],true);    
 
-        array_diff($cart,[$id]);        
+        
+        $cart = array_diff($cart,[$id]);        
+        
+
         setcookie('cart', json_encode($cart), time()+7*24*3600, '/');
 
         return $this->redirect('/cart');

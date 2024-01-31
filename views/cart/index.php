@@ -21,7 +21,7 @@
           <?php foreach ($records as $model){?>
           <div class="card mb-3">              
               <div class="card-body p-0">
-                  <a class="remove-cart" href="/cart/remove/<?=$model->id_subplace?>">&times;</a>
+                  <a class="remove-cart" href="/cart/remove?id=<?=$model->id_subplace?>">&times;</a>
                   <div class="row">
                       <div class="col-5">
                         <img src="<?=$model->media->showThumb(['w'=>350])?>">
@@ -38,7 +38,7 @@
                                 </div>
                               </div>
                               <div class="text-right">
-                                  <b><?=$model->price?> / <?=$model->price_type?></b>
+                                  <b><?php if (!empty($model->price)){?><?=$model->price?>/<?=$model->price_type?><?php }else {?> по запросу<?php }?></b>
                               </div>
                           </div>
                       </div>

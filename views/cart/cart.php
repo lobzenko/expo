@@ -12,6 +12,7 @@
       <div class="col-md-6">
           <div class="card">
               <div class="card-body p-0">
+                  <a href="/cart/remove?id=<?=$model->id_subplace?>" class="remove-cart" href="#">&times;</a>
                   <div class="row">
                       <div class="col-5">
                         <img src="<?=$model->media->showThumb(['w'=>350])?>">
@@ -23,7 +24,7 @@
                                 <p class="text-muted"><?=$model->place->name?></p>
                               </div>
                               <div class="text-right">
-                                  <b><?=$model->price?> / <?=$model->price_type?></b>
+                                  <b><?php if (!empty($model->price)){?><?=$model->price?>/<?=$model->price_type?><?php }?></b>
                               </div>
                           </div>
                       </div>
