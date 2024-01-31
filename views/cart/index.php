@@ -33,8 +33,8 @@
                                 <p class="text-muted"><?=$model->place->name?></p>
 
                                 <div class="datetime">
-                                  <?= $form->field($order, 'date')->textInput(['placeholder' => 'Дата','type'=>'date','required'=>'true','class'=>'mini-form-control'])->label(false) ?>
-                                  <?= $form->field($order, 'time')->textInput(['placeholder' => 'Время','type'=>"time",'required'=>'true','class'=>'mini-form-control'])->label(false) ?>
+                                  <?= $form->field($order, 'subplaces['.$model->id_subplace.'][date]')->textInput(['placeholder' => 'Дата','type'=>'date','required'=>'true','class'=>'mini-form-control'])->label(false) ?>
+                                  <?= $form->field($order, 'subplaces['.$model->id_subplace.'][time]')->textInput(['placeholder' => 'Время','type'=>"time",'required'=>'true','class'=>'mini-form-control'])->label(false) ?>
                                 </div>
                               </div>
                               <div class="text-right">

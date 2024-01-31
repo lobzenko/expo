@@ -35,6 +35,7 @@ class Order extends \yii\db\ActiveRecord
             [['id_subplace', 'created_at'], 'integer'],
             [['name', 'phone', 'email'], 'required'],
             [['name', 'phone', 'email', 'time','date'], 'string', 'max' => 255],
+            [['subplaces'],'safe']
         ];
     }
 
@@ -46,6 +47,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             'id_order' => 'ID',
             'id_subplace' => 'Локация',
+            'subplaces' => 'Локации',
             'name' => 'ФИО',
             'phone' => 'Телефон',
             'email' => 'Email',
@@ -55,8 +57,21 @@ class Order extends \yii\db\ActiveRecord
         ];
     }
 
-     public function getSubplace()
+    public function getSubplace()
     {
         return $this->hasOne(Subplace::className(), ['id_subplace' => 'id_subplace']);
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert))
+        {
+            if (is_array($this->subplaces))
+                $this->subplaces = json_encode($this->subplaces);
+
+            return true;
+        }
+        else
+            return false;
     }
 }

@@ -43,6 +43,9 @@ class CartController extends \app\components\BaseController
         {
             //Yii::$app->session->remove('id_subplace',$id);
             
+            $cookies = Yii::$app->response->cookies;
+            $cookies->remove('cart');
+
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
                 'success'=>true
@@ -73,6 +76,8 @@ class CartController extends \app\components\BaseController
 
     public function actionView($id)
     {        
+        return $this->redirect('/cart');
+
         $model = Subplace::findOne($id);
 
         Yii::$app->session->set('id_subplace',$id);
