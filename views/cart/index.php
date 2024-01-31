@@ -38,7 +38,7 @@
                                 </div>
                               </div>
                               <div class="text-right">
-                                  <b><?php if (!empty($model->price)){?><?=$model->price?>/<?=$model->price_type?><?php }else {?> по запросу<?php }?></b>
+                                  <b><?php if (!empty($model->price)){?><?=$model->price?>/<?=$model->price_type?><?php }else {?>стоимость по запросу<?php }?></b>
                               </div>
                           </div>
                       </div>
