@@ -20,11 +20,6 @@ class CartController extends \app\components\BaseController
      */
     public function actionIndex($id=0)
     {   
-        /*$id_subplace = Yii::$app->session->get('id_subplace');
-
-        if (!empty($id_subplace))
-            return $this->redirect('/cart/'.$id_subplace);*/
-
         $cart = [];
 
         if (!empty($_COOKIE['cart']))
@@ -41,12 +36,17 @@ class CartController extends \app\components\BaseController
 
         if ($order->load(Yii::$app->request->post()) && $order->save())
         {
-            //Yii::$app->session->remove('id_subplace',$id);
-            
             $cookies = Yii::$app->response->cookies;
-            $cookies->remove('cart');
+            $cookies->remove('cart');            
+            
+            Yii::$app->mailer->compose('order',['model'=>$order])
+                    ->setTo('msd_86@mail.ru')
+                    ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                    ->setSubject('Новый заказ '.$order->id_order)
+                    ->send();
 
             Yii::$app->response->format = Response::FORMAT_JSON;
+            
             return [
                 'success'=>true
             ];
@@ -68,7 +68,6 @@ class CartController extends \app\components\BaseController
         
         $cart = array_diff($cart,[$id]);        
         
-
         setcookie('cart', json_encode($cart), time()+7*24*3600, '/');
 
         return $this->redirect('/cart');

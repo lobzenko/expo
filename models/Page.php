@@ -188,7 +188,6 @@ class Page extends \yii\db\ActiveRecord
         return new PageQuery(get_called_class());
     }
 
-
     public function afterSave($insert,$changedAttributes)
     {
         if (!empty($changedAttributes['alias']) || $insert)

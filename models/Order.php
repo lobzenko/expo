@@ -62,6 +62,30 @@ class Order extends \yii\db\ActiveRecord
         return $this->hasOne(Subplace::className(), ['id_subplace' => 'id_subplace']);
     }
 
+    public function getPlaces()
+    {
+        $places = json_encode($this->subplaces);
+
+        if (empty($places))
+            return [];
+
+        $id_subpales = array_keys($places);
+
+        if (empty($id_subpales))
+            return [];
+
+        $models = Subplace::find()->where(['id_subplace'=>$id_subpales])->indexBy('id_subpales')->all();
+
+
+        foreach ($models as $index=>$model)
+        {
+            $model->time = $places[$index]['time']??'';
+            $model->date = $places[$index]['date']??'';
+        }    
+
+        return $models;
+    }
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert))

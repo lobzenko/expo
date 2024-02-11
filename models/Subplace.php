@@ -19,6 +19,9 @@ use Yii;
  */
 class Subplace extends \yii\db\ActiveRecord
 {
+    public $time;
+    public $date;
+
     /**
      * {@inheritdoc}
      */
