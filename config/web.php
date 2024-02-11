@@ -55,11 +55,11 @@ $config = [
             // for the mailer to send real emails.
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'mail.sfu-kras.ru',
+                'host' => 'https://mail.sfu-kras.ru',
                 'username' => 'expo@sfu-kras.ru',
                 'password' => '36dc30d0',
                 'port' => '465',
-                //'encryption' => 'tls',
+                'encryption' => 'tls',
             ],
             'useFileTransport' => false,
         ],
