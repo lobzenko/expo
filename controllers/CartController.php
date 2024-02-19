@@ -38,12 +38,12 @@ class CartController extends \app\components\BaseController
         {
             $cookies = Yii::$app->response->cookies;
             $cookies->remove('cart');            
-            
-            Yii::$app->mailer->compose('order',['model'=>$order])
-                    ->setTo('msd_86@mail.ru')
-                    ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-                    ->setSubject('Новый заказ '.$order->id_order)
-                    ->send();
+                
+            Yii::$app->mailer->compose('order',['order'=>$order])
+                ->setTo('msd_86@mail.ru')
+                ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                ->setSubject('Новый заказ '.$order->id_order)
+                ->send();
 
             Yii::$app->response->format = Response::FORMAT_JSON;
             

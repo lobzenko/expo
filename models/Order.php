@@ -64,7 +64,7 @@ class Order extends \yii\db\ActiveRecord
 
     public function getPlaces()
     {
-        $places = json_encode($this->subplaces);
+        $places = json_decode($this->subplaces,true);
 
         if (empty($places))
             return [];
@@ -74,8 +74,7 @@ class Order extends \yii\db\ActiveRecord
         if (empty($id_subpales))
             return [];
 
-        $models = Subplace::find()->where(['id_subplace'=>$id_subpales])->indexBy('id_subpales')->all();
-
+        $models = Subplace::find()->where(['id_subplace'=>$id_subpales])->indexBy('id_subplace')->all();
 
         foreach ($models as $index=>$model)
         {

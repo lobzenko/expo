@@ -1,4 +1,4 @@
-<p>Вы оформили заявку №<?=$model->id_order?> на бронирование площадок</p>
+<p>Вы оформили заявку №<?=$order->id_order?> на бронирование площадок</p>
 
 <?php 
 $total = 0;
@@ -32,13 +32,13 @@ if (!empty($order->places))
 <table border="1"  width="800">
 	<tr>
 		<th style="padding:10px;">ФИО</th>
-		<td style="padding:10px;"><?=$model->name?></td>
+		<td style="padding:10px;"><?=$order->name?></td>
 	</tr>
 		<th style="padding:10px;">Телефон</th>
-		<td style="padding:10px;"><?=$model->phone?></td>
+		<td style="padding:10px;"><?=$order->phone?></td>
 	</tr>
 	<tr>
 		<th style="padding:10px;">Емейл</th>
-		<td style="padding:10px;"><?=$model->email?></td>
+		<td style="padding:10px;"><?=$order->email?></td>
 	</tr>
 </table>

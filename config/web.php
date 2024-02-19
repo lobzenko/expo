@@ -53,13 +53,17 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
+            'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'mail.sfu-kras.ru',
                 'username' => 'expo@sfu-kras.ru',
                 'password' => '36dc30d0',
-                'port' => '465',
-                'encryption' => 'tls',
+                //'port' => '587',
+                //'encryption' => 'tls',
+                'port'=>'465',
+                'encryption'=>'ssl',
+                'timeout' => 5
             ],
             'useFileTransport' => false,
         ],
