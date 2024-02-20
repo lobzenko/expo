@@ -10,41 +10,26 @@ use yii\grid\GridView;
 /** @var app\models\search\Contact $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Contacts';
+$this->title = 'Обратная связь';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="contact-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Contact', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+<div class="card">    
+    <div class="card-body">    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+        'columns' => [            
             'id_contact',
             'name',
             'phone',
             'email:email',
             'firm',
-            //'comment:ntext',
-            //'created_at',
-            //'url:url',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Contact $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id_contact' => $model->id_contact]);
-                 }
-            ],
+            
         ],
     ]); ?>
 
+    </div>
 
 </div>

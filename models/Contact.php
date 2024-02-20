@@ -47,12 +47,12 @@ class Contact extends \yii\db\ActiveRecord
     {
         return [
             'id_contact' => 'Id Contact',
-            'name' => 'Name',
-            'phone' => 'Phone',
+            'name' => 'Имя',
+            'phone' => 'Телефон',
             'email' => 'Email',
-            'firm' => 'Firm',
-            'comment' => 'Comment',
-            'created_at' => 'Created At',
+            'firm' => 'Организация',
+            'comment' => 'Сообщение',
+            'created_at' => 'Дата',
             'url' => 'Url',
         ];
     }
