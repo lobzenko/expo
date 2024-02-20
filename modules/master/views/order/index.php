@@ -30,8 +30,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ],    
             [
                 'attribute' => 'id_subplace',
-                'value'=>function($model){                    
-                    return Html::a($model->subplace->name,['place/view','id'=>$model->subplace->id_place]);                    
+                'value'=>function($model){         
+
+                    $places = $model->places;
+
+                    $output = '';
+                    
+                    if (!empty($places))
+                    {
+                        foreach ($places as $place)
+                            $output .= Html::a($place->name,['place/view','id'=>$place->id_place]).'<br>';
+                    }
+
+                    return $output; 
                 },
                 'format'=>'raw',
             ],

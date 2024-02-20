@@ -1,44 +1,11 @@
-<p>Вы оформили заявку №<?=$order->id_order?> на бронирование площадок</p>
+<p>Добрый день!</p>
 
-<?php 
-$total = 0;
+<p>Благодарим за Ваш запрос и интерес к нашим площадкам.</p>
 
-if (!empty($order->places))
-{
-?>
-<table border="1" width="800">
-<?php 
-	foreach ($order->places as $model)
-	{
-?>
-	<tr>
-		<td style="padding:10px;">			
-			<?=$model->name?>
-		</td>		
-		<td style="padding:10px;">			
-			<?=$model->time?>
-		</td>		
-		<td style="padding:10px;">			
-			<?=$model->date?>
-		</td>		
-	</tr>
-<?php } ?>
-</table>
+<p>Хотим сообщить, что заявка получена, и в ближайшее время с вами свяжется наш специалист для более детального обсуждения.</p>
 
-<?php } ?>
+<p>Если у вас возникнут какие-либо дополнительные вопросы до нашего разговора, не стесняйтесь обращаться. Вы можете выслать их ответом на это сообщение. Мы готовы предоставить вам всю необходимую информацию.<p/>
 
-<p>Контактные данные</p>
-
-<table border="1"  width="800">
-	<tr>
-		<th style="padding:10px;">ФИО</th>
-		<td style="padding:10px;"><?=$order->name?></td>
-	</tr>
-		<th style="padding:10px;">Телефон</th>
-		<td style="padding:10px;"><?=$order->phone?></td>
-	</tr>
-	<tr>
-		<th style="padding:10px;">Емейл</th>
-		<td style="padding:10px;"><?=$order->email?></td>
-	</tr>
-</table>
+<p>С наилучшими пожеланиями,<br>
+Команда СФУ.ЭКСПО<br>
++7 (391) 206-53-41</p>
