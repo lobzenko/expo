@@ -40,7 +40,7 @@ class CartController extends \app\components\BaseController
             $cookies->remove('cart');            
                 
             Yii::$app->mailer->compose('order',['order'=>$order])
-                ->setTo('msd_86@mail.ru')
+                ->setTo($order->email)
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setSubject('Новый заказ '.$order->id_order)
                 ->send();
