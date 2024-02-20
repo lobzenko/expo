@@ -24,7 +24,17 @@ $this->params['breadcrumbs'][] = ['label' => 'Заявки', 'url' => ['index']]
             [
                 'attribute' => 'id_subplace',
                 'value'=>function($model){                    
-                    return Html::a($model->subplace->place->name.' : '.$model->subplace->name,['place/view','id'=>$model->subplace->id_place]);                    
+                    $places = $model->places;
+
+                    $output = '';
+                    
+                    if (!empty($places))
+                    {
+                        foreach ($places as $place)
+                            $output .= Html::a($place->name,['place/view','id'=>$place->id_place]).' '.$place->date.' '.$place->time.'<br>';
+                    }
+
+                    return $output; 
                 },
                 'format'=>'raw',
             ],

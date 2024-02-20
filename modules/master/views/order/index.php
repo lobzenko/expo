@@ -23,10 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [            
             'id_order',
             [
-                'attribute' => 'date',
-                'value'=>function($model){                    
-                    return $model->date.' '.$model->time;                    
-                },                
+                'attribute' => 'created_at',
+                'format' => ['datetime', 'php:d.m.Y']
             ],    
             [
                 'attribute' => 'id_subplace',
@@ -39,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if (!empty($places))
                     {
                         foreach ($places as $place)
-                            $output .= Html::a($place->name,['place/view','id'=>$place->id_place]).'<br>';
+                            $output .= Html::a($place->name,['place/view','id'=>$place->id_place]).' '.$place->date.' '.$place->time.'<br>';
                     }
 
                     return $output; 
